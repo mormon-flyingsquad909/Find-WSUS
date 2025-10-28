@@ -114,7 +114,7 @@ $results.Hostname | Where-Object { $_ } | Sort-Object -Unique
 ### 2. **Policy Scan (STA Runspace)**
 
 * Uses `Get-GPRegistryValue` in an **STA runspace** to avoid COM threading errors.
-* Scans for `WUServer`, `WUStatusServer`, and `WSUSStatusServer` values in:
+* Scans for `WUServer` and `WUStatusServer` values in:
 
   ```
   HKLM\Software\Policies\Microsoft\Windows\WindowsUpdate
